@@ -1,0 +1,20 @@
+# إعدادات Netlify لنشر المشروع وتشغيل المساعد البيئي الذكي
+[build]
+  publish = "public"
+  functions = "netlify/functions"
+
+# إعادة توجيه مسارات الـ API لتشغيل دوال Netlify Functions بدون خادم منفصل
+[[redirects]]
+  from = "/api/chat"
+  to = "/.netlify/functions/chat"
+  status = 200
+
+[[redirects]]
+  from = "/api/health"
+  to = "/.netlify/functions/health"
+  status = 200
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
