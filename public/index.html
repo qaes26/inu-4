@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <meta name="description" content="حملة بيئتنا لوحتنا - جامعة إربد الأهلية. مبادرة جامعية رائدة للحفاظ على نظافة البيئة الجامعية وتعزيز الاستدامة مع المساعد البيئي الذكي.">
+  <meta name="keywords" content="جامعة إربد الأهلية, بيئتنا لوحتنا, نظافة الجامعة, المساعد البيئي, استدامة, الأردن, إربد">
+  <meta name="theme-color" content="#1B5E20">
+  <title>حملة بيئتنا لوحتنا | جامعة إربد الأهلية - الموقع الرسمي والمساعد البيئي الذكي</title>
+
+  <!-- استيراد خط تجوال العربي من خطوط جوجل -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- ملف تنسيقات المساعد البيئي الذكي -->
+  <link rel="stylesheet" href="chatbot.css">
+
+  <style>
+    /* ==========================================================================
+       التنسيقات العامة للموقع التعريفي لحملة بيئتنا لوحتنا
+       جامعة إربد الأهلية - متجاوب بالكامل مع كافة الشاشات والهواتف الذكية
+       ========================================================================== */
+    :root {
+      --primary-dark: #1B5E20;
+      --primary: #2E7D32;
+      --primary-light: #4CAF50;
+      --accent: #81C784;
+      --accent-light: #C8E6C9;
+      --bg-cream: #FAFDF9;
+      --bg-card: #FFFFFF;
+      --text-main: #18281b;
+      --text-muted: #4e6552;
+      --border-color: #E2ECE1;
+      --shadow-soft: 0 8px 24px rgba(27, 94, 32, 0.08);
+      --shadow-hover: 0 14px 35px rgba(27, 94, 32, 0.15);
+      --radius-xl: 24px;
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --font-family: 'Tajawal', system-ui, -apple-system, sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: var(--font-family);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-cream);
+      color: var(--text-main);
+      line-height: 1.7;
+      direction: rtl;
+      text-align: right;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.25s ease;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* الشريط العلوي للإعلان */
+    .top-announcement {
+      background: var(--primary-dark);
+      color: #ffffff;
+      padding: 8px 14px;
+      font-size: 13px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .top-announcement span.badge {
+      background: var(--accent-light);
+      color: var(--primary-dark);
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 11px;
+      white-space: nowrap;
+    }
+
+    /* شريط الملاحة الرئيسي */
+    .site-nav {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      z-index: 1000;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.03);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo-img {
+      height: 44px;
+      width: auto;
+      border-radius: 8px;
+      border: 1px solid var(--accent);
+      padding: 2px;
+      background: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .brand-titles h1 {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--primary-dark);
+      line-height: 1.2;
+    }
+
+    .brand-titles p {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      gap: 22px;
+    }
+
+    .nav-links a {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--text-main);
+      padding: 6px 4px;
+      position: relative;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--primary);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 0%;
+      height: 2.5px;
+      background: var(--primary);
+      transition: width 0.25s ease;
+      border-radius: 2px;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta-btn {
+      background: var(--primary);
+      color: #ffffff !important;
+      padding: 9px 18px !important;
+      border-radius: 24px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13.5px;
+      font-weight: 700 !important;
+      box-shadow: 0 4px 12px rgba(46, 125, 50, 0.25);
+    }
+
+    .nav-cta-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    /* زر القائمة المنسدلة للهواتف (Hamburger) */
+    .mobile-menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 26px;
+      color: var(--primary-dark);
+      cursor: pointer;
+      padding: 6px;
+      line-height: 1;
+    }
+
+    /* القائمة المنسدلة للموبايل */
+    .mobile-nav-drawer {
+      display: none;
+      background: #ffffff;
+      border-bottom: 2px solid var(--border-color);
+      padding: 16px 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+
+    .mobile-nav-drawer.open {
+      display: block;
+      animation: slide-down 0.25s ease-out;
+    }
+
+    @keyframes slide-down {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .mobile-nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .mobile-nav-list a {
+      display: block;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--text-main);
+      background: #F9FCF8;
+    }
+
+    .mobile-nav-list a:hover, .mobile-nav-list a:active {
+      background: #E8F5E9;
+      color: var(--primary-dark);
+    }
+
+    .mobile-nav-btn {
+      margin-top: 6px;
+      width: 100%;
+      background: var(--primary);
+      color: #ffffff !important;
+      text-align: center;
+      padding: 12px !important;
+      border-radius: 12px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    /* قسم البطل (Hero Section) */
+    .hero-section {
+      position: relative;
+      background: linear-gradient(rgba(20, 60, 24, 0.88), rgba(27, 94, 32, 0.94)), url('images/students-cleaning-sign.jpeg') center/cover no-repeat;
+      color: #ffffff;
+      padding: 70px 0 80px 0;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(8px);
+      padding: 6px 16px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      margin-bottom: 18px;
+    }
+
+    .hero-title {
+      font-size: 38px;
+      font-weight: 900;
+      line-height: 1.3;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-title span.highlight {
+      color: #A5D6A7;
+      text-decoration: underline;
+      text-decoration-color: var(--accent);
+      text-underline-offset: 6px;
+    }
+
+    .hero-desc {
+      font-size: 16px;
+      line-height: 1.75;
+      color: rgba(255, 255, 255, 0.92);
+      margin-bottom: 28px;
+      max-width: 600px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn-main {
+      background: #ffffff;
+      color: var(--primary-dark);
+      font-weight: 800;
+      padding: 12px 26px;
+      border-radius: 30px;
+      font-size: 15px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-main:hover {
+      background: #E8F5E9;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.18);
+      color: #ffffff;
+      border: 1.5px solid rgba(255, 255, 255, 0.4);
+      font-weight: 700;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-size: 15px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      backdrop-filter: blur(6px);
+      cursor: pointer;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.28);
+      border-color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    .hero-card {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: var(--radius-xl);
+      padding: 26px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.22);
+    }
+
+    .hero-card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      padding-bottom: 14px;
+    }
+
+    .hero-card-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      flex-shrink: 0;
+    }
+
+    .hero-card-quote {
+      font-size: 14.5px;
+      line-height: 1.7;
+      margin-bottom: 18px;
+      font-style: italic;
+    }
+
+    .hero-card-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .hero-card-features li {
+      font-size: 13.5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* الأقسام العامة */
+    .section-wrap {
+      padding: 65px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 40px auto;
+    }
+
+    .section-tag {
+      display: inline-block;
+      background: #E8F5E9;
+      color: var(--primary);
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    .section-desc {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* شبكة بطاقات الأهداف */
+    .goals-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .goal-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 24px 20px;
+      transition: all 0.28s ease;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+    }
+
+    .goal-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--accent);
+    }
+
+    .goal-icon-box {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: #E8F5E9;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      margin-bottom: 16px;
+    }
+
+    .goal-card h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 8px;
+    }
+
+    .goal-card p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* معرض الصور الحقيقي للحملة */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery-item {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-soft);
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .gallery-img-wrap {
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+      position: relative;
+      background: #edf5ed;
+    }
+
+    .gallery-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.35s ease;
+    }
+
+    .gallery-item:hover .gallery-img-wrap img {
+      transform: scale(1.04);
+    }
+
+    .gallery-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(27, 94, 32, 0.88);
+      color: #ffffff;
+      padding: 4px 10px;
+      border-radius: 16px;
+      font-size: 11.5px;
+      font-weight: 600;
+      backdrop-filter: blur(6px);
+    }
+
+    .gallery-content {
+      padding: 16px 18px;
+      flex: 1;
+    }
+
+    .gallery-content h4 {
+      font-size: 15.5px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 5px;
+    }
+
+    .gallery-content p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* قسم نموذج الإبلاغ */
+    #report-section {
+      background: linear-gradient(180deg, #F1F8E9 0%, #FFFFFF 100%);
+      border-radius: var(--radius-xl);
+      border: 2px dashed var(--accent);
+      padding: 50px 32px;
+      margin: 36px 0;
+      transition: all 0.35s ease;
+    }
+
+    #report-section.highlight-pulse {
+      animation: highlight-pulse-anim 1.8s ease-in-out;
+    }
+
+    @keyframes highlight-pulse-anim {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
+      50% { box-shadow: 0 0 0 14px rgba(76, 175, 80, 0.35); }
+    }
+
+    .report-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .report-info h2 {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 14px;
+      line-height: 1.3;
+    }
+
+    .report-info p {
+      font-size: 14.5px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      line-height: 1.65;
+    }
+
+    .report-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .report-step {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #ffffff;
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+      border: 1px solid var(--border-color);
+      font-size: 13.5px;
+    }
+
+    .step-number {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #ffffff;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 13px;
+    }
+
+    .report-form-box {
+      background: #ffffff;
+      padding: 28px;
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-hover);
+      border: 1px solid var(--border-color);
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-md);
+      font-size: 15px;
+      color: var(--text-main);
+      background: #FAFDF9;
+      outline: none;
+      transition: all 0.25s ease;
+      -webkit-appearance: none;
+    }
+
+    .form-control:focus {
+      border-color: var(--primary);
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.15);
+    }
+
+    textarea.form-control {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--primary);
+      color: #ffffff;
+      border: none;
+      padding: 13px;
+      border-radius: var(--radius-md);
+      font-size: 15.5px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 12px rgba(46, 125, 50, 0.25);
+    }
+
+    .btn-submit:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    .form-alert {
+      display: none;
+      padding: 12px 14px;
+      border-radius: var(--radius-md);
+      margin-top: 14px;
+      font-size: 13.5px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .form-alert.success {
+      display: block;
+      background: #E8F5E9;
+      color: var(--primary-dark);
+      border: 1px solid var(--accent);
+    }
+
+    /* تذييل الصفحة */
+    .site-footer {
+      background: #112814;
+      color: #E8F5E9;
+      padding: 50px 0 20px 0;
+      border-top: 4px solid var(--primary);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 30px;
+    }
+
+    .footer-brand h3 {
+      font-size: 19px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+
+    .footer-brand p {
+      font-size: 13.5px;
+      color: #C8E6C9;
+      line-height: 1.7;
+    }
+
+    .footer-col h4 {
+      font-size: 15.5px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 14px;
+      position: relative;
+      padding-bottom: 6px;
+    }
+
+    .footer-col h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 28px;
+      height: 2px;
+      background: var(--accent);
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .footer-links a {
+      color: #C8E6C9;
+      font-size: 13.5px;
+    }
+
+    .footer-links a:hover {
+      color: #ffffff;
+      padding-right: 4px;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      padding-top: 20px;
+      text-align: center;
+      font-size: 12.5px;
+      color: #A5D6A7;
+    }
+
+    /* ==========================================================================
+       التجاوب الخاص بشاشات الهواتف والأجهزة اللوحية (Mobile / Tablet Media Queries)
+       ========================================================================== */
+    @media (max-width: 900px) {
+      .hero-grid, .report-grid, .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .nav-links, .nav-cta-btn {
+        display: none;
+      }
+
+      .mobile-menu-toggle {
+        display: block;
+      }
+
+      .hero-title {
+        font-size: 30px;
+      }
+
+      .section-wrap {
+        padding: 50px 0;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .nav-inner {
+        height: 64px;
+      }
+
+      .brand-logo-img {
+        height: 38px;
+      }
+
+      .brand-titles h1 {
+        font-size: 16px;
+      }
+
+      .brand-titles p {
+        font-size: 10.5px;
+      }
+
+      .hero-section {
+        padding: 40px 0 50px 0;
+      }
+
+      .hero-pill {
+        font-size: 11.5px;
+        padding: 5px 12px;
+        margin-bottom: 14px;
+      }
+
+      .hero-title {
+        font-size: 26px;
+        line-height: 1.35;
+      }
+
+      .hero-desc {
+        font-size: 14px;
+        line-height: 1.65;
+        margin-bottom: 22px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .btn-main, .btn-secondary {
+        width: 100%;
+        padding: 12px;
+        font-size: 14.5px;
+      }
+
+      .hero-card {
+        padding: 20px 16px;
+        border-radius: var(--radius-lg);
+      }
+
+      .hero-card-avatar {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+      }
+
+      .hero-card-quote {
+        font-size: 13.5px;
+      }
+
+      .section-title {
+        font-size: 23px;
+      }
+
+      .section-desc {
+        font-size: 14px;
+      }
+
+      .gallery-img-wrap {
+        height: 190px;
+      }
+
+      #report-section {
+        padding: 26px 16px;
+        margin: 24px 0;
+        border-radius: var(--radius-lg);
+      }
+
+      .report-info h2 {
+        font-size: 22px;
+      }
+
+      .report-form-box {
+        padding: 20px 14px;
+        border-radius: var(--radius-lg);
+      }
+
+      .form-control {
+        font-size: 16px; /* يمنع عمل Zoom في هواتف آيفون */
+      }
+
+      .footer-grid {
+        gap: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- شريط الإعلان العلوي -->
+  <div class="top-announcement">
+    <span class="badge">مبادرة بيئية</span>
+    <span>حملة بيئتنا لوحتنا | جامعة إربد الأهلية - نحو بيئة جامعية مستدامة ونظيفة 🌱</span>
+  </div>
+
+  <!-- ترويسة الموقع والملاحة -->
+  <header class="site-nav">
+    <div class="container nav-inner">
+      <div class="brand-group">
+        <img src="images/university-emblem-badge.jpeg" alt="شعار جامعة إربد الأهلية" class="brand-logo-img">
+        <div class="brand-titles">
+          <h1>حملة بيئتنا لوحتنا</h1>
+          <p>جامعة إربد الأهلية - الأردن</p>
+        </div>
+      </div>
+
+      <!-- روابط الديسكتوب -->
+      <ul class="nav-links">
+        <li><a href="#home" class="active">الرئيسية</a></li>
+        <li><a href="#about">عن الحملة</a></li>
+        <li><a href="#goals">أهدافنا</a></li>
+        <li><a href="#gallery">المعرض الميداني</a></li>
+        <li><a href="#report-section">نموذج الإبلاغ</a></li>
+      </ul>
+
+      <a href="#report-section" class="nav-cta-btn">
+        <span>📍</span>
+        <span>أبلغ عن مكان</span>
+      </a>
+
+      <!-- زر القائمة للهواتف (Hamburger) -->
+      <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="فتح القائمة" onclick="toggleMobileNav()">
+        ☰
+      </button>
+    </div>
+
+    <!-- القائمة المنسدلة المخصصة للهواتف -->
+    <div class="mobile-nav-drawer" id="mobileNavDrawer">
+      <ul class="mobile-nav-list">
+        <li><a href="#home" onclick="closeMobileNav()">🏠 الرئيسية</a></li>
+        <li><a href="#about" onclick="closeMobileNav()">🌱 عن الحملة والرسالة</a></li>
+        <li><a href="#goals" onclick="closeMobileNav()">🎯 أهداف المبادرة</a></li>
+        <li><a href="#gallery" onclick="closeMobileNav()">📷 المعرض الميداني للحملة</a></li>
+        <li><a href="#report-section" onclick="closeMobileNav()">📍 نموذج الإبلاغ عن مكان</a></li>
+      </ul>
+      <a href="javascript:void(0)" class="mobile-nav-btn" onclick="openChatFromMobile()">
+        <span>💬 تحدث مع المساعد البيئي الذكي</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- قسم البطل (Hero Section) -->
+  <section id="home" class="hero-section">
+    <div class="container hero-grid">
+      <div class="hero-text">
+        <div class="hero-pill">
+          <span>🌱</span>
+          <span>جامعتنا بيتنا الثاني .. فلنحافظ عليه نظيفاً</span>
+        </div>
+
+        <h2 class="hero-title">
+          حملة <span class="highlight">بيئتنا لوحتنا</span><br>
+          جامعة إربد الأهلية
+        </h2>
+
+        <p class="hero-desc">
+          مبادرة طلابية ومجتمعية هادفة أطلقتها جامعة إربد الأهلية لترسيخ ثقافة النظافة والاستدامة، والحفاظ على رونق وجمال الحرم الجامعي ليكون لوحة بهية تعكس حضارة طلبتنا ووعيهم.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#report-section" class="btn-main">
+            <span>📍 أبلغ عن مكان يحتاج تنظيف</span>
+          </a>
+          <button type="button" class="btn-secondary" onclick="openChatFromMobile()">
+            <span>💬 اسأل المساعد البيئي</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="hero-card-header">
+          <div class="hero-card-avatar">🌱</div>
+          <div>
+            <h3 style="font-size: 16px; font-weight: 800; color: #ffffff;">المساعد البيئي الذكي متصل الآن</h3>
+            <span style="font-size: 12px; color: #C8E6C9;">مدعوم بنموذج ذكاء اصطناعي متطور</span>
+          </div>
+        </div>
+        <p class="hero-card-quote">
+          «أنت قدوة... ابدأ بنفسك. نظافة المكان من نظافة الإيمان، فلنحافظ على بيئتنا الجامعية نظيفة وصحية.»
+        </p>
+        <ul class="hero-card-features">
+          <li><span>✔️</span> <span>يفهم اللهجة الأردنية والعربية الفصحى بطلاقة.</span></li>
+          <li><span>✔️</span> <span>يساعدك في الإبلاغ ومعرفة أهداف الحملة وإرشادات الفرز.</span></li>
+          <li><span>✔️</span> <span>يقدم أفكاراً ومبادرات بيئية مميزة لطلبة الجامعة.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- قسم عن الحملة وأهدافها -->
+  <section id="about" class="section-wrap">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">رسالتنا ورؤيتنا</span>
+        <h2 class="section-title">النظافة سلوك راقٍ يعكس ثقافتنا وأخلاقنا</h2>
+        <p class="section-desc">
+          انطلقت حملة "بيئتنا لوحتنا" في جامعة إربد الأهلية لإيماننا العميق بأن البيئة الجامعية ليست مجرد قاعات تدريسية، بل هي بيتنا الثاني الذي يستحق منا كل رعاية واهتمام ومسؤولية مشتركة.
+        </p>
+      </div>
+
+      <div class="goals-grid" id="goals">
+        <div class="goal-card">
+          <div class="goal-icon-box">♻️</div>
+          <h3>فرز وتدوير النفايات</h3>
+          <p>توزيع الحاويات الملونة المخصصة للفرز (الورق، البلاستيك، النفايات العامة) لتشجيع إعادة التدوير داخل الكليات.</p>
+        </div>
+
+        <div class="goal-card">
+          <div class="goal-icon-box">👥</div>
+          <h3>المشاركة الطلابية الفاعلة</h3>
+          <p>إشراك طلبة الجامعة والنوادي الطلابية في حملات تطوعية ميدانية تعزز روح الانتماء والعمل الجماعي.</p>
+        </div>
+
+        <div class="goal-card">
+          <div class="goal-icon-box">💡</div>
+          <h3>نشر الوعي البيئي</h3>
+          <p>تنظيم لقاءات توعوية وتوفير المساعد البيئي الذكي للإجابة عن التساؤلات وتقديم نصائح مستمرة للطلبة.</p>
+        </div>
+
+        <div class="goal-card">
+          <div class="goal-icon-box">🌿</div>
+          <h3>حرم جامعي أخضر ومستدام</h3>
+          <p>الحفاظ على المساحات الخضراء والحدائق الجامعية ورعايتها لتظل بيئة صحية وملهمة للدراسة والتميز.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- المعرض الميداني المصور للحملة -->
+  <section id="gallery" class="section-wrap" style="background: #F4F9F2;">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">توثيق الحملة الميدانية</span>
+        <h2 class="section-title">معرض صور مبادرة "بيئتنا لوحتنا"</h2>
+        <p class="section-desc">
+          صور حية لمبادرات وفعاليات النظافة والبوسترات التوعوية داخل حرم جامعة إربد الأهلية بمشاركة طلبتنا الأعزاء.
+        </p>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <div class="gallery-img-wrap">
+            <img src="images/students-cleaning-sign.jpeg" alt="طلبة جامعة إربد الأهلية أمام صرح الجامعة">
+            <span class="gallery-badge">صرح الجامعة</span>
+          </div>
+          <div class="gallery-content">
+            <h4>فريق الحملة الميداني</h4>
+            <p>طلبة الجامعة يشاركون بهمة عالية في تنظيف الساحات المحيطة بصرح جامعة إربد الأهلية.</p>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <div class="gallery-img-wrap">
+            <img src="images/initiative-banner-action.jpeg" alt="مبادرة بيئتنا لوحة - لنرسم معا مستقبلا أجمل">
+            <span class="gallery-badge">مبادرة ميدانية</span>
+          </div>
+          <div class="gallery-content">
+            <h4>بيئتنا.. لوحة لنرسم معاً مستقبلاً أجمل</h4>
+            <p>بانر الحملة الرسمي وسط الممرات الجامعية لتشجيع الجميع على المبادرة والتطوع.</p>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <div class="gallery-img-wrap">
+            <img src="images/poster-cleanliness-duty.jpeg" alt="بوستر النظافة مسؤوليتنا جميعا">
+            <span class="gallery-badge">توعية وإرشاد</span>
+          </div>
+          <div class="gallery-content">
+            <h4>النظافة مسؤوليتنا جميعاً</h4>
+            <p>بيئتنا الجامعية عنوان حضارتنا ووعينا: نظافة | احترام | مسؤولية | وعي | استدامة.</p>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <div class="gallery-img-wrap">
+            <img src="images/poster-recycling-campus.jpeg" alt="جامعتنا بيتنا الثاني فلنحافظ عليه نظيفا">
+            <span class="gallery-badge">فرز النفايات</span>
+          </div>
+          <div class="gallery-content">
+            <h4>جامعتنا بيتنا الثاني</h4>
+            <p>إرشادات استخدام حاويات الفرز الملونة لضمان بيئة جامعية صحية ونقية.</p>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <div class="gallery-img-wrap">
+            <img src="images/students-waste-disposal.jpeg" alt="الطلاب يضعون المخلفات في الحاوية المخصصة">
+            <span class="gallery-badge">سلوك حضاري</span>
+          </div>
+          <div class="gallery-content">
+            <h4>حافظ على نظافة جامعتك</h4>
+            <p>لا ترمِ النفايات في غير مكانها واستخدم سلة المهملات؛ فالنظافة تعكس شخصيتك.</p>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <div class="gallery-img-wrap">
+            <img src="images/poster-energy-future.jpeg" alt="أنتم طاقة المستقبل فلنحافظ على بيئتنا الجامعية">
+            <span class="gallery-badge">طاقة المستقبل</span>
+          </div>
+          <div class="gallery-content">
+            <h4>أنتم طاقة المستقبل</h4>
+            <p>فلنحافظ على بيئتنا الجامعية نظيفة وصحية.. معاً نحو جامعة نظيفة ومستدامة.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- قسم نموذج الإبلاغ التفاعلي -->
+  <section class="container">
+    <div id="report-section">
+      <div class="report-grid">
+        <div class="report-info">
+          <span class="section-tag">خدمة الطلبة والزوار</span>
+          <h2>نموذج الإبلاغ عن مكان يحتاج تنظيف 📍</h2>
+          <p>
+            هل لاحظت موقعاً في الحرم الجامعي يحتاج إلى تنظيف أو حاوية ممتلئة؟ أبلغنا فوراً وسيقوم فريق المبادرة والخدمات المساندة بمتابعة المكان ومعالجته بأسرع وقت.
+          </p>
+
+          <div class="report-steps">
+            <div class="report-step">
+              <div class="step-number">1</div>
+              <div>
+                <strong>حدد موقع المشكلة:</strong> اختر الكلية أو المرفق الجامعي.
+              </div>
+            </div>
+            <div class="report-step">
+              <div class="step-number">2</div>
+              <div>
+                <strong>صِف الحالة بدقة:</strong> وضح نوع النفايات أو الاحتياج.
+              </div>
+            </div>
+            <div class="report-step">
+              <div class="step-number">3</div>
+              <div>
+                <strong>استجابة سريعة:</strong> يتم إشعار فريق النظافة الميداني للتحرك مباشرة.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="report-form-box">
+          <form id="campusReportForm" onsubmit="event.preventDefault(); submitReport();">
+            <div class="form-group">
+              <label for="reporterName">اسم الطالب / المبلغ (اختياري)</label>
+              <input type="text" id="reporterName" class="form-control" placeholder="مثال: أحمد العمري">
+            </div>
+
+            <div class="form-group">
+              <label for="campusLocation">موقع المكان في الحرم الجامعي *</label>
+              <select id="campusLocation" class="form-control" required>
+                <option value="">-- اختر موقع المشكلة --</option>
+                <option value="كلية الآداب والفنون">كلية الآداب والفنون</option>
+                <option value="كلية العلوم وتكنولوجيا المعلومات">كلية العلوم وتكنولوجيا المعلومات</option>
+                <option value="كلية العلوم الإدارية والمالية">كلية العلوم الإدارية والمالية</option>
+                <option value="كلية القانون">كلية القانون</option>
+                <option value="كلية العلوم التمريضية والطبية">كلية العلوم التمريضية والطبية</option>
+                <option value="مجمع القاعات التدريسية المركزي">مجمع القاعات التدريسية المركزي</option>
+                <option value="المكتبة المركزية">المكتبة المركزية</option>
+                <option value="الكافتيريا الرئيسية والمطاعم">الكافتيريا الرئيسية والمطاعم</option>
+                <option value="الساحات الخارجية والحدائق">الساحات الخارجية والحدائق</option>
+                <option value="مواقف السيارات والبوابات">مواقف السيارات والبوابات</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="issueType">نوع المشكلة البيئية *</label>
+              <select id="issueType" class="form-control" required>
+                <option value="نفايات متراكمة">نفايات متراكمة في الممرات أو الساحات</option>
+                <option value="حاوية ممتلئة">حاوية نفايات ممتلئة وبحاجة لتفريغ</option>
+                <option value="انسكاب سوائل">انسكاب سوائل أو اتساخ أرضيات</option>
+                <option value="مخلفات أشجار وحدائق">مخلفات تقليم أو عناية بالحدائق</option>
+                <option value="حاجة لحاوية فرز جديدة">حاجة لتوفير حاوية فرز إضافية</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="issueDetails">تفاصيل إضافية عن الموقع *</label>
+              <textarea id="issueDetails" class="form-control" placeholder="يرجى ذكر رقم الطابق، القاعة المجاورة، أو أي علامة مميزة..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit">
+              <span>🚀 إرسال البلاغ لفريق النظافة</span>
+            </button>
+
+            <div id="reportAlert" class="form-alert"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- تذييل الصفحة (Footer) -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>حملة بيئتنا لوحتنا 🌱</h3>
+          <p>
+            مبادرة بيئية جامعية أطلقتها جامعة إربد الأهلية للمحافظة على بيئة تعليمية وصحية نقية، وتنمية روح التطوع والمسؤولية المجتمعية لدى الطلبة.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>روابط سريعة</h4>
+          <ul class="footer-links">
+            <li><a href="#home">الرئيسية</a></li>
+            <li><a href="#about">عن الحملة</a></li>
+            <li><a href="#goals">أهدافنا</a></li>
+            <li><a href="#gallery">المعرض الميداني</a></li>
+            <li><a href="#report-section">نموذج الإبلاغ</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>المساعد البيئي الذكي</h4>
+          <p style="font-size: 13px; color: #C8E6C9; margin-bottom: 12px;">
+            انقر على الزر العائم أسفل الشاشة للتحدث في أي وقت مع مساعدك البيئي.
+          </p>
+          <button type="button" class="btn-main" style="padding: 9px 18px; font-size: 13.5px; width: 100%;" onclick="openChatFromMobile()">
+            <span>🌱 افتح المحادثة الآن</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>جميع الحقوق محفوظة © حملة بيئتنا لوحتنا - جامعة إربد الأهلية 2026 | المملكة الأردنية الهاشمية</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- السكربتات التفاعلية للموبايل والنموذج -->
+  <script>
+    // التبديل للقائمة المنسدلة في الهواتف
+    function toggleMobileNav() {
+      const drawer = document.getElementById('mobileNavDrawer');
+      const btn = document.getElementById('mobileMenuBtn');
+      drawer.classList.toggle('open');
+      btn.textContent = drawer.classList.contains('open') ? '✕' : '☰';
+    }
+
+    function closeMobileNav() {
+      const drawer = document.getElementById('mobileNavDrawer');
+      const btn = document.getElementById('mobileMenuBtn');
+      if (drawer) drawer.classList.remove('open');
+      if (btn) btn.textContent = '☰';
+    }
+
+    // فتح الشات بوت من أزرار الموبايل
+    function openChatFromMobile() {
+      closeMobileNav();
+      const toggle = document.querySelector('.eco-chat-toggle');
+      if (toggle) {
+        const chatWindow = document.querySelector('.eco-chat-window');
+        if (chatWindow && !chatWindow.classList.contains('active')) {
+          toggle.click();
+        }
+      }
+    }
+
+    // معالجة إرسال بلاغ النظافة
+    function submitReport() {
+      const location = document.getElementById('campusLocation').value;
+      const type = document.getElementById('issueType').value;
+      const alertBox = document.getElementById('reportAlert');
+
+      alertBox.className = 'form-alert success';
+      alertBox.innerHTML = `✅ تم استلام بلاغك بنجاح عن <strong>(${location} - ${type})</strong>! شكراً لمساهمتك في إبقاء جامعة إربد الأهلية نظيفة وبيئة ملهمة 🌱.`;
+
+      document.getElementById('campusReportForm').reset();
+
+      setTimeout(() => {
+        alertBox.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+  </script>
+
+  <!-- استدعاء السكربت التفاعلي للمساعد البيئي الذكي -->
+  <script src="chatbot.js"></script>
+</body>
+</html>
